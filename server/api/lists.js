@@ -62,7 +62,7 @@ router.get("/:listId", async (req, res, next) => {
         model: List,
       },
     });
-    res.json("hello!");
+    res.json(list);
   } catch (error) {
     next(error);
   }

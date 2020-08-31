@@ -53,17 +53,16 @@ router.post("/", async (req, res, next) => {
 
 router.get("/:listId", async (req, res, next) => {
   try {
-    const list = await List.findOne({
+    const list = await ListAccess.findOne({
       where: {
-        id: req.params.listId,
+        listId: req.params.listId,
+        category: "household",
       },
       include: {
-        model: ListAccess,
-        where: {
-          category: "household",
-        },
+        model: List,
       },
     });
+    res.json(list);
     res.json(list);
   } catch (error) {
     next(error);

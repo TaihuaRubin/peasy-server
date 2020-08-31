@@ -1,12 +1,20 @@
 const router = require("express").Router();
 const { User } = require("../db/models");
 
+router.get("/getAuth", async (req, res, next) => {
+  try {
+    res.send("hello!");
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
   try {
-    console.log("reqqq", req.body)
+    console.log("reqqq", req.body);
     const user = await User.findOne({ where: { email } });
-    console.log("LOG", user)
+    console.log("LOG", user);
     if (!user) {
       console.log("No such user found:", email);
       res.status(401).send("Wrong username and/or password");

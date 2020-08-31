@@ -26,6 +26,7 @@ passport.serializeUser((user, done) => done(null, user.id));
 
 passport.deserializeUser(async (id, done) => {
   try {
+    console.log("im db from passport block", db);
     const user = await db.models.User.findByPk(id);
     done(null, user);
   } catch (err) {

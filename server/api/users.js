@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 // post route
 router.post("/", async (req, res, next) => {
   try {
-    console.log("inside post req");
+    console.log('inside post req')
     const newUser = await User.create(req.body);
     res.status(201).json(newUser);
   } catch (error) {
@@ -26,5 +26,6 @@ router.post("/", async (req, res, next) => {
 // put route
 
 // delete route
+
 
 module.exports = router;

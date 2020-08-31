@@ -60,7 +60,7 @@ router.get("/:listId", async (req, res, next) => {
       include: {
         model: ListAccess,
         where: {
-          category: "Household",
+          category: "household",
         },
       },
     });

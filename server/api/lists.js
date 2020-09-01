@@ -94,6 +94,8 @@ router.post("/join", async (req, res, next) => {
           notificationTitle: "New Household Request",
           notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
           type: "memberRequest",
+          requestUserId: id,
+          requestListId: Number(listId[0]),
         },
       });
     }

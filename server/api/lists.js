@@ -108,7 +108,10 @@ router.post("/accept", async (req, res, next) => {
   try {
     const { userId, listId } = req.body;
     const toUpdate = await ListAccess.findOne({ where: { userId, listId, category: "household", confirmed: false } });
-    const updated = await toUpdate.update({ confirmed: true });
+    toUpdate.confirmed = true;
+    await toUpdate.save();
+
+    //const updated = await toUpdate.update({ confirmed: true });
 
     const notyToDelete = await Notification.findAll({ where: { requestUserId: userId, requestListId: listId } });
     res.json(notyToDelete);

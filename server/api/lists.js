@@ -110,8 +110,12 @@ router.post("/accept", async (req, res, next) => {
     const toUpdate = await ListAccess.findOne({ where: { userId, listId, category: "household", confirmed: false } });
     const updated = await toUpdate.update({ confirmed: true });
 
-    const noty = await Notification.findAll({ where: { requestUserId: userId, requestListId: listId } });
-    noty.forEach(async (each) => await each.destroy());
+    const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
+
+    // for (let i = 0; i<noty.length; i++){
+    //   let toDelete = noty[i];
+    //   await toDelete.destroy()
+    // }
   } catch (e) {
     next(e);
   }

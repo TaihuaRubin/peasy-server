@@ -111,7 +111,7 @@ router.post("/accept", async (req, res, next) => {
     const updated = await toUpdate.update({ confirmed: true });
 
     const noty = await Notification.findAll({ where: { requestUserId: userId, requestListId: listId } });
-    await noty.destroy();
+    noty.forEach(async (each) => await each.destroy());
   } catch (e) {
     next(e);
   }

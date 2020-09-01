@@ -112,8 +112,8 @@ router.post("/accept", async (req, res, next) => {
     toUpdate.confirmed = true;
     await toUpdate.save();
     res.json(toUpdate);
-    // const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
-    // res.json("destroyed");
+    const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
+    res.json("destroyed");
   } catch (e) {
     next(e);
   }

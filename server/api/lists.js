@@ -108,7 +108,7 @@ router.post("/accept", async (req, res, next) => {
   try {
     const { userId, listId } = req.body;
     const toUpdate = await ListAccess.findOne({ where: { userId, listId, category: "household", confirmed: false } });
-    res.json("toUpdate", toUpdate);
+    res.json(toUpdate);
     // toUpdate.confirmed = true;
     // await toUpdate.save();
 

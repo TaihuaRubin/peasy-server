@@ -108,17 +108,12 @@ router.post("/accept", async (req, res, next) => {
   try {
     const { userId, listId } = req.body;
     const toUpdate = await ListAccess.findOne({ where: { userId, listId, category: "household", confirmed: false } });
-    toUpdate.confirmed = true;
-    await toUpdate.save();
+    res.send("toUpdate", toUpdate);
+    // toUpdate.confirmed = true;
+    // await toUpdate.save();
 
-    //const updated = await toUpdate.update({ confirmed: true });
-
-    const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
-    res.json("destroyed");
-    // for (let i = 0; i<noty.length; i++){
-    //   let toDelete = noty[i];
-    //   await toDelete.destroy()
-    // }
+    // const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
+    // res.json("destroyed");
   } catch (e) {
     next(e);
   }

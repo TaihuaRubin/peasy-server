@@ -103,6 +103,20 @@ router.post("/join", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/accept", async (req, res, next) => {
+  try {
+    const { userId, listId } = req.body;
+    const toUpdate = await ListAccess.findOne({ where: { userId, listId, category: "household", confirmed: false } });
+    const updated = await toUpdate.update({ confirmed: true });
+
+    const noty = await Notification.findAll({ where: { requestUserId: userId, requestListId: listId } });
+    await noty.destroy();
+  } catch (e) {
+    next(e);
+  }
+});
+
 //get the list by id
 router.get("/:listId", async (req, res, next) => {
   try {

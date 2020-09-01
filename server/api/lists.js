@@ -113,8 +113,8 @@ router.post("/accept", async (req, res, next) => {
 
     //const updated = await toUpdate.update({ confirmed: true });
 
-    const notyToDelete = await Notification.findAll({ where: { requestUserId: userId, requestListId: listId } });
-    res.json(notyToDelete);
+    const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
+    res.json("destroyed");
     // for (let i = 0; i<noty.length; i++){
     //   let toDelete = noty[i];
     //   await toDelete.destroy()

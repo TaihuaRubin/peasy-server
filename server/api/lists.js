@@ -76,7 +76,7 @@ router.post("/join", async (req, res, next) => {
     const [newMember, addedMember] = await ListAccess.findOrCreate({
       where: {
         userId: id,
-        listId,
+        listId: Number(listId[0]),
         category: "household",
       },
     });

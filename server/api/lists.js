@@ -151,12 +151,6 @@ router.get("/:listId", async (req, res, next) => {
 
 router.post("/access/:listId/:userId", async (req, res, next) => {
   try {
-    // console.log("222222222222222222222) right before list access")
-    // console.log(req.params.userId)
-    // console.log(typeof (req.params.userId))
-
-    // console.log(req.params.listId)
-    // console.log(typeof (req.params.listId))
     await ListAccess.create({
       listId: req.params.listId,
       userId: req.params.userId,
@@ -177,18 +171,6 @@ router.post("/:listId", async (req, res, next) => {
     res.json(newItem);
   } catch (error) {
     console.log(error);
-  }
-});
-
-router.get("/:listId/members", async (req, res, next) => {
-  try {
-    const members = await ListAccess.findAll({
-      where: { listId: req.params.listId },
-      include: { model: User },
-    });
-    res.json(members);
-  } catch (error) {
-    next(error);
   }
 });
 

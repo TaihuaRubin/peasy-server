@@ -35,4 +35,16 @@ router.post("/:userId", async (req, res, next) => {
   }
 });
 
+router.get("/:listId/members", async (req, res, next) => {
+  try {
+    const members = await ListAccess.findAll({
+      where: { listId: req.params.listId },
+      include: { model: User },
+    });
+    res.json(members);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

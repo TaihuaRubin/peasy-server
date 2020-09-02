@@ -17,6 +17,8 @@ Store.belongsToMany(User, { through: StorePreference, foreignKey: "storeId" });
 StorePreference.belongsTo(Store);
 ListAccess.belongsTo(List);
 
+ListAccess.belongsTo(User);
+
 User.hasMany(Notification);
 Notification.belongsTo(User);
 

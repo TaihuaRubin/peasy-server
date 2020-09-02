@@ -116,6 +116,16 @@ router.post("/accept", async (req, res, next) => {
     res.json(toUpdate);
     const notyToDelete = await Notification.destroy({ where: { requestUserId: userId, requestListId: listId } });
     res.json("destroyed");
+
+    // create accept noty for reqUser
+    const noty = await Notification.findOrCreate({
+      where: {
+        userId: userId,
+        notificationTitle: "You've been added to a household!",
+        notificationBody: `You've been accepted into household ${listId}! Head over to your new list and start sharing items!`,
+        type: "other",
+      },
+    });
   } catch (e) {
     next(e);
   }

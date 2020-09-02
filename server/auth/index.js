@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../db/models");
-const List = require("../db/models/list");
+const { User, Notification, List, ListAccess } = require("../db/models");
 
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;

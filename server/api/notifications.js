@@ -30,4 +30,21 @@ router.put("/read", async (req, res, next) => {
   }
 });
 
+router.post("/locationError", async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    await Notification.findOrCreate({
+      where: {
+        userId: userId,
+        notificationTitle: "Permission Denied",
+        notificationBody:
+          "We are not able to use your location to determine how far you are from your favorite store. Please set local permission to Always Allow to use this feature",
+        type: "location",
+      },
+    });
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

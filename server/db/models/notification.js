@@ -17,7 +17,7 @@ const Notification = db.define("notification", {
     },
   },
   type: {
-    type: Sequelize.ENUM("memberRequest", "welcome", "newItem", "other"),
+    type: Sequelize.ENUM("memberRequest", "welcome", "newItem", "location", "other"),
     allowNull: false,
     validate: {
       notEmpty: true,

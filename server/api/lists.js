@@ -180,6 +180,18 @@ router.post("/:listId", async (req, res, next) => {
   }
 });
 
+router.get("/:listId/members", async (req, res, next) => {
+  try {
+    const members = await ListAccess.findAll({
+      where: { listId: req.params.listId },
+      include: { model: User },
+    });
+    res.json(members);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //update item quantity
 router.put("/:listId/:itemId", async (req, res, next) => {
   try {

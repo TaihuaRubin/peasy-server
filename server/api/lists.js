@@ -62,12 +62,20 @@ router.get("/household/:listId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newList = await List.create(req.body);
-    res.json(newList);
+
+    const noty = await Notification.create({
+      userId: id,
+      notificationTitle: "New Household Created",
+      notificationBody: `Congratulations! You set up your first household. Your household id is: ${newList.id}. Don't forget to tell your roommates to join and you can start sharing your grocery list!`,
+      type: "other",
+    });
+
+    res.json(newList.id);
+    res.sendStatus(201);
   } catch (error) {
     next(error);
   }
 });
-
 // request to join a household
 router.post("/join", async (req, res, next) => {
   try {
@@ -75,9 +83,17 @@ router.post("/join", async (req, res, next) => {
     const [newMember, addedMember] = await ListAccess.findOrCreate({
       where: {
         userId: id,
-        listId: Number(listId[0]),
+        listId,
         category: "household",
       },
+    });
+
+    // ADDED CONFIRMATION NOTIFICATION
+    const selfNoty = await Notification.create({
+      userId: id,
+      notificationTitle: "Request Sent",
+      notificationBody: `Your request to join Household ${listId} has been submitted. We will notify you when it has been accepted.`,
+      type: "other",
     });
 
     const householdMembers = await ListAccess.findAll({
@@ -94,8 +110,6 @@ router.post("/join", async (req, res, next) => {
           notificationTitle: "New Household Request",
           notificationBody: `${firstName} ${lastName} would like to join your household. Please choose an option below.`,
           type: "memberRequest",
-          requestUserId: id,
-          requestListId: Number(listId[0]),
         },
       });
     }

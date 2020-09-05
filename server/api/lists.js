@@ -50,7 +50,7 @@ router.get("/household/:listId", async (req, res, next) => {
   try {
     const listItems = await ItemUserList.findAll({
       where: { listId: req.params.listId },
-      include: { model: Item },
+      include: { model: Item, User },
     });
     res.json(listItems);
   } catch (error) {

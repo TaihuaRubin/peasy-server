@@ -16,7 +16,6 @@ Store.belongsToMany(User, { through: StorePreference, foreignKey: "storeId" });
 
 StorePreference.belongsTo(Store);
 ListAccess.belongsTo(List);
-
 ListAccess.belongsTo(User);
 
 User.hasMany(Notification);
@@ -25,6 +24,7 @@ Notification.belongsTo(User);
 ItemUserList.belongsTo(User, { targetKey: "id", foreignKey: "userId" });
 ItemUserList.belongsTo(List, { targetKey: "id", foreignKey: "listId" });
 ItemUserList.belongsTo(Item, { targetKey: "id", foreignKey: "itemId" });
+
 
 module.exports = {
   User,

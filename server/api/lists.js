@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { List, ListAccess, ItemUserList, Item, Notification } = require("../db/models");
+const { User, List, ListAccess, ItemUserList, Item, Notification } = require("../db/models");
 
 //all the lists
 // router.get('/', async (req, res, next) => {

@@ -5,6 +5,7 @@ const ItemUserList = db.define("itemUserList", {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 0,
     validate: {
       notEmpty: true,
     },

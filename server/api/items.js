@@ -45,11 +45,12 @@ router.put("/reduce", async (req, res, next) => {
     if (item.quantity > 1) {
       item.quantity = item.quantity - 1;
       await item.save();
+      res.json(item);
     } else {
+      const itemCopy = { ...item };
       await item.destroy();
+      res.json(itemCopy);
     }
-
-    res.json(item);
   } catch (error) {
     console.log(error);
   }

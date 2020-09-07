@@ -88,7 +88,8 @@ router.post("/createNewItem", async (req, res, next) => {
     const { itemName, quantity } = item;
     const newItem = await Item.create({ itemName });
     const addedItem = await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
-    res.json(addedItem);
+    const updatedList = await ItemUserList.findAll({ where: { userId, listId } });
+    res.json(updatedList);
   } catch (error) {
     next(error);
   }

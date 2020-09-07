@@ -26,7 +26,7 @@ router.get("/add", async (req, res, next) => {
 
     // item.quantity = item.quantity + 1;
     // await item.save();
-    res.send(item);
+    res.json(item);
   } catch (error) {
     console.log(error);
   }

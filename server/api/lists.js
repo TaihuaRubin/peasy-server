@@ -73,8 +73,8 @@ router.put("/markPurchased", async (req, res, next) => {
         },
       }
     );
-
-    res.json(items);
+    const updatedItems = await ItemUserList.findAll({ where: { itemId, listId, purchased: true } });
+    res.send(updatedItems);
   } catch (error) {
     console.log(error);
   }

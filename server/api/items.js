@@ -11,6 +11,18 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/itemUserList", async (req, res, next) => {
+  try {
+    const item = await ItemUserList.findAll();
+
+    // item.quantity = item.quantity + 1;
+    // await item.save();
+    res.json(item);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 //update item quantity
 router.get("/add", async (req, res, next) => {
   try {

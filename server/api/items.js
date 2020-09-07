@@ -42,8 +42,8 @@ router.put("/add", async (req, res, next) => {
         userId,
       },
     });
-    item.quantity = item.quantity + 1;
-    await item.save();
+    // item.quantity = item.quantity + 1;
+    // await item.save();
     res.send(item);
   } catch (error) {
     console.log(error);

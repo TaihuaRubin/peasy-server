@@ -48,7 +48,6 @@ router.put("/reduce", async (req, res, next) => {
       res.json(item);
     } else {
       const itemCopy = JSON.parse(JSON.stringify(item));
-
       await item.destroy();
       res.json(itemCopy);
     }
@@ -59,12 +58,11 @@ router.put("/reduce", async (req, res, next) => {
 
 router.delete("/remove", async (req, res, next) => {
   try {
-    const { itemId, listId, userId } = req.body;
+    const { itemId, listId } = req.body;
     const item = await ItemUserList.destroy({
       where: {
         itemId,
         listId,
-        userId,
       },
     });
     res.json(item);

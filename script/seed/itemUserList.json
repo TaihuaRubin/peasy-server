@@ -664,5 +664,53 @@
     "listId": 67,
     "itemId": 29,
     "quantity": 2
+  },
+  {
+    "userId": 2,
+    "listId": 58,
+    "itemId": 58,
+    "quantity": 1
+  },
+  {
+    "userId": 3,
+    "listId": 58,
+    "itemId": 58,
+    "quantity": 1
+  },
+  {
+    "userId": 4,
+    "listId": 58,
+    "itemId": 58,
+    "quantity": 1
+  },
+  {
+    "userId": 1,
+    "listId": 58,
+    "itemId": 59,
+    "quantity": 1
+  },
+  {
+    "userId": 3,
+    "listId": 58,
+    "itemId": 59,
+    "quantity": 1
+  },
+  {
+    "userId": 4,
+    "listId": 58,
+    "itemId": 59,
+    "quantity": 1
+  },
+  {
+    "userId": 1,
+    "listId": 58,
+    "itemId": 81,
+    "quantity": 1
+  },
+  {
+    "userId": 1,
+    "listId": 58,
+    "itemId": 82,
+    "quantity": 1
   }
 ]

@@ -1,16 +1,6 @@
 const router = require("express").Router();
 const { User, List, ListAccess, ItemUserList, Item, Notification } = require("../db/models");
 
-//all the lists
-// router.get('/', async (req, res, next) => {
-//     try {
-//         const lists = await List.findAll()
-//         res.json(lists)
-//     } catch (error) {
-//         next(error)
-//     }
-// })
-
 //route for get the private list info (not items in lst)
 router.get("/privatelist/:userId", async (req, res, next) => {
   try {
@@ -163,57 +153,11 @@ router.get("/:listId", async (req, res, next) => {
   }
 });
 
-router.post("/access/:listId/:userId", async (req, res, next) => {
-  try {
-    await ListAccess.create({
-      listId: req.params.listId,
-      userId: req.params.userId,
-      category: "household",
-      confirmed: true,
-    });
-    // console.log("hi");
-    res.sendStatus(201);
-  } catch (error) {
-    next(error);
-  }
-});
-
 //add new item to ItemUserList
 router.post("/:listId", async (req, res, next) => {
   try {
     const newItem = await ItemUserList.create(req.body);
     res.json(newItem);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-//update item quantity
-router.put("/:listId/:itemId", async (req, res, next) => {
-  try {
-    const item = await ItemUserList.findOne({
-      where: {
-        listId: req.params.listId,
-        itemId: req.params.itemId,
-      },
-    });
-    const updatedItem = await item.update({ quantity: req.body.quantity });
-    res.json(updatedItem);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-//DELETE sinle item
-router.delete("/:listId/:itemId", async (req, res, next) => {
-  try {
-    const deletedItem = await ItemUserList.destroy({
-      where: {
-        listId: req.params.listId,
-        itemId: req.params.itemId,
-      },
-    });
-    res.json(deletedItem);
   } catch (error) {
     console.log(error);
   }

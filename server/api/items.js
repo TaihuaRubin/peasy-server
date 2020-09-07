@@ -14,7 +14,6 @@ router.get("/", async (req, res, next) => {
 router.get("/itemUserList", async (req, res, next) => {
   try {
     const item = await ItemUserList.findAll();
-
     res.json(item);
   } catch (error) {
     console.log(error);
@@ -25,10 +24,8 @@ router.post("/add", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
     const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
-
     item.quantity = item.quantity + 1;
     await item.save();
-    res.json(item);
   } catch (error) {
     console.log(error);
   }
@@ -69,26 +66,6 @@ router.delete("/remove", async (req, res, next) => {
     console.log(error);
   }
 });
-
-// //update item quantity
-// router.post("/add", async (req, res, next) => {
-//   try {
-//     const { itemId, listId, userId } = req.body;
-//     const item = await ItemUserList.findOrCreate({
-//       where: {
-//         itemId,
-//         listId,
-//         userId,
-//       },
-//     });
-
-//     item.quantity = item.quantity + 1;
-//     await item.save();
-//     res.json(item);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
 //add new item to Item table
 router.post("/", async (req, res, next) => {

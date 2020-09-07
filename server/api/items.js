@@ -35,7 +35,7 @@ router.post("/", async (req, res, next) => {
 router.put("/add", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
-    const item = await ItemUserList.findOrCreate({
+    const item = await ItemUserList.findAll({
       where: {
         itemId,
         listId,
@@ -44,6 +44,7 @@ router.put("/add", async (req, res, next) => {
     });
     item.quantity = item.quantity + 1;
     await item.save();
+    res.send(item);
   } catch (error) {
     console.log(error);
   }

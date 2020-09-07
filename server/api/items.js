@@ -47,7 +47,8 @@ router.put("/reduce", async (req, res, next) => {
       await item.save();
       res.json(item);
     } else {
-      const itemCopy = { ...item };
+      const itemCopy = JSON.parse(JSON.stringify(item));
+
       await item.destroy();
       res.json(itemCopy);
     }

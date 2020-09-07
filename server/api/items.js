@@ -14,10 +14,10 @@ router.get("/", async (req, res, next) => {
 router.post("/itemUserList", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
-    const item = await ItemUserList.findOrCreate({ where: { itemId, listId, userId } });
+    const item = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
 
-    item.quantity = item.quantity + 1;
-    await item.save();
+    // item.quantity = item.quantity + 1;
+    // await item.save();
     res.json(item);
   } catch (error) {
     console.log(error);

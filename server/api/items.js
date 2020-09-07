@@ -24,7 +24,7 @@ router.get("/itemUserList", async (req, res, next) => {
 });
 
 //update item quantity
-router.get("/add", async (req, res, next) => {
+router.put("/add", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
     const item = await ItemUserList.findOrCreate({

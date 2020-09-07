@@ -56,7 +56,7 @@ router.put("/reduce", async (req, res, next) => {
   }
 });
 
-router.delete("/remove", async (req, res, next) => {
+router.put("/remove", async (req, res, next) => {
   try {
     const { itemId, listId } = req.body;
     const item = await ItemUserList.findAll({

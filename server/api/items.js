@@ -66,7 +66,10 @@ router.delete("/remove", async (req, res, next) => {
       },
     });
     const itemCopy = JSON.parse(JSON.stringify(item));
-    await item.destroy();
+    for (let i = 0; i < item.length; i++) {
+      await item[i].destroy();
+    }
+    // await item.destroy();
     res.sendStatus(204).json(itemCopy);
   } catch (error) {
     console.log(error);

@@ -44,7 +44,7 @@ router.put("/reduce", async (req, res, next) => {
     });
 
     if (item === null) {
-      res.send("No Item For This User");
+      res.send("0");
     } else {
       if (item.quantity > 1) {
         item.quantity = item.quantity - 1;

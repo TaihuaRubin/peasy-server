@@ -48,7 +48,7 @@ router.put("/reduce", async (req, res, next) => {
       item.quantity = item.quantity - 1;
       await item.save();
     } else {
-      item.destroy();
+      await item.destroy();
     }
   } catch (error) {
     console.log(error);

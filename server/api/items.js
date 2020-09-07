@@ -82,7 +82,7 @@ router.put("/remove", async (req, res, next) => {
   }
 });
 
-add new item to Item table
+//add new item to Item table
 router.post("/createNewItem", async (req, res, next) => {
   try {
     const { item, listId, userId } = req.body;

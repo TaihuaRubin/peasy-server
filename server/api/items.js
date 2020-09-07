@@ -4,7 +4,7 @@ const { Item, Store, StorePreference, ItemUserList } = require("../db/models");
 //all the Items
 router.get("/", async (req, res, next) => {
   try {
-    const items = await items.findAll();
+    const items = await Item.findAll();
     res.json(items);
   } catch (error) {
     next(error);

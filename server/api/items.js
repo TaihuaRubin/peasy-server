@@ -11,6 +11,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/itemUserList", async (req, res, next) => {
+  try {
+    const item = await ItemUserList.findAll();
+
+    res.json(item);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/itemUserList", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;

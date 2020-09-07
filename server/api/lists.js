@@ -71,8 +71,8 @@ router.put("/markPurchased", async (req, res, next) => {
       },
     });
 
-    const updated = await items.update({ purchased: true });
-    res.json(updated);
+    // const updated = await items.update({ purchased: true });
+    res.json(items);
   } catch (error) {
     console.log(error);
   }

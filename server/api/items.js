@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 //route for each single item:  "api/items/:id"
 router.get("/:itemId", async (req, res, next) => {
   try {
-    const singleItem = await Item.findByPk(req.params.itemId);
+    const singleItem = await Item.findById(req.params.itemId);
     res.json(singleItem);
   } catch (error) {
     next(error);

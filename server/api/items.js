@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
 router.get("/add", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
+    console.log("itemId", itemId, listId, userId);
     const item = await ItemUserList.findAll({
       where: {
         itemId,
@@ -22,6 +23,7 @@ router.get("/add", async (req, res, next) => {
         userId,
       },
     });
+
     // item.quantity = item.quantity + 1;
     // await item.save();
     res.send(item);

@@ -102,15 +102,16 @@ router.post("/createNewItem", async (req, res, next) => {
     const { item, listId, userId } = req.body;
     const { itemName, quantity } = item;
     const newItem = await Item.create({ itemName });
-    const addedItem = await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
-    // const updatedList = await ItemUserList.findAll({ where: { userId, listId }, include: { model: Item } });
-    // res.json(updatedList);
-    res.json(addedItem);
+    await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
+    const updatedItem = await ItemUserList.findAll({
+      where: { userId, listId, itemId: newItem.id },
+      include: { model: Item },
+    });
+    res.json(updatedItem);
   } catch (error) {
     next(error);
   }
 });
-
 //route for each single item:  "api/items/:id"
 router.get("/:itemId", async (req, res, next) => {
   try {

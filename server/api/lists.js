@@ -48,19 +48,6 @@ router.get("/household/:listId", async (req, res, next) => {
   }
 });
 
-// mark item's purchased => true;
-router.put("/household/:listId/:itemId", async (req, res, next) => {
-  try {
-    const listItems = await ItemUserList.findAll({
-      where: { listId: req.params.listId, purchased: false },
-      include: [{ model: Item }, { model: User }],
-    });
-    res.json(listItems);
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.put("/markPurchased", async (req, res, next) => {
   try {
     const { itemId, listId } = req.body;
@@ -92,7 +79,7 @@ router.post("/", async (req, res, next) => {
     const noty = await Notification.create({
       userId: id,
       notificationTitle: "New Household Created",
-      notificationBody: `Congratulations! You set up your first household. Your household id is: ${newList.id}. Don't forget to tell your roommates to join and you can start sharing your grocery list!`,
+      notificationBody: `Congratulations! You created a new household. Your household id is: ${newList.id}. Don't forget to tell your roommates to join and you can start sharing your grocery list!`,
       type: "other",
     });
 

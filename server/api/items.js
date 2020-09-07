@@ -26,6 +26,7 @@ router.post("/add", async (req, res, next) => {
     const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
     item.quantity = item.quantity + 1;
     await item.save();
+    res.json(item);
   } catch (error) {
     console.log(error);
   }
@@ -47,6 +48,8 @@ router.put("/reduce", async (req, res, next) => {
     } else {
       await item.destroy();
     }
+
+    res.json(item);
   } catch (error) {
     console.log(error);
   }
@@ -62,6 +65,7 @@ router.delete("/remove", async (req, res, next) => {
         userId,
       },
     });
+    res.json(item);
   } catch (error) {
     console.log(error);
   }

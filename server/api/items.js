@@ -70,7 +70,7 @@ router.put("/remove", async (req, res, next) => {
       await item[i].destroy();
     }
     // await item.destroy();
-    res.sendStatus(204).json(itemCopy);
+    res.status(204).json(itemCopy);
   } catch (error) {
     console.log(error);
   }

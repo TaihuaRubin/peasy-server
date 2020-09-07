@@ -83,14 +83,29 @@ router.put("/remove", async (req, res, next) => {
 });
 
 //add new item to Item table
+// router.post("/createNewItem", async (req, res, next) => {
+//   try {
+//     const { item, listId, userId } = req.body;
+//     const { itemName, quantity } = item;
+//     const newItem = await Item.create({ itemName });
+//     const addedItem = await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
+//     const updatedList = await ItemUserList.findAll({ where: { userId, listId }, include: { model: Item } });
+//     res.json(updatedList);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+//add new item to Item table
 router.post("/createNewItem", async (req, res, next) => {
   try {
     const { item, listId, userId } = req.body;
     const { itemName, quantity } = item;
     const newItem = await Item.create({ itemName });
     const addedItem = await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
-    const updatedList = await ItemUserList.findAll({ where: { userId, listId }, include: { model: Item } });
-    res.json(updatedList);
+    // const updatedList = await ItemUserList.findAll({ where: { userId, listId }, include: { model: Item } });
+    // res.json(updatedList);
+    res.json(addedItem);
   } catch (error) {
     next(error);
   }

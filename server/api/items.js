@@ -21,7 +21,7 @@ router.get("/itemUserList", async (req, res, next) => {
   }
 });
 
-router.post("/itemUserList", async (req, res, next) => {
+router.post("/add", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
     const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
@@ -34,25 +34,61 @@ router.post("/itemUserList", async (req, res, next) => {
   }
 });
 
-//update item quantity
-router.post("/add", async (req, res, next) => {
+router.put("/reduce", async (req, res, next) => {
   try {
     const { itemId, listId, userId } = req.body;
-    const item = await ItemUserList.findOrCreate({
+    const item = await ItemUserList.findOne({
       where: {
         itemId,
         listId,
         userId,
       },
     });
-
-    item.quantity = item.quantity + 1;
-    await item.save();
-    res.json(item);
+    if (item.quantity > 1) {
+      item.quantity = item.quantity - 1;
+      await item.save();
+    } else {
+      item.destroy();
+    }
   } catch (error) {
     console.log(error);
   }
 });
+
+router.delete("/remove", async (req, res, next) => {
+  try {
+    const { itemId, listId, userId } = req.body;
+    const item = await ItemUserList.destroy({
+      where: {
+        itemId,
+        listId,
+        userId,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// //update item quantity
+// router.post("/add", async (req, res, next) => {
+//   try {
+//     const { itemId, listId, userId } = req.body;
+//     const item = await ItemUserList.findOrCreate({
+//       where: {
+//         itemId,
+//         listId,
+//         userId,
+//       },
+//     });
+
+//     item.quantity = item.quantity + 1;
+//     await item.save();
+//     res.json(item);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 //add new item to Item table
 router.post("/", async (req, res, next) => {

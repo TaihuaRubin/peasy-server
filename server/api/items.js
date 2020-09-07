@@ -82,10 +82,13 @@ router.put("/remove", async (req, res, next) => {
 });
 
 //add new item to Item table
-router.post("/", async (req, res, next) => {
+router.post("/createNewItem", async (req, res, next) => {
   try {
-    const item = await Item.create(req.body);
-    res.json(item);
+    const { item, listId, userId } = req.body;
+    const { itemName, quantity } = item;
+    const newItem = await Item.create({ itemName });
+    const addedItem = await ItemUserList.create({ quantity, userId, listId, itemId: newItem.id });
+    res.json(addedItem);
   } catch (error) {
     next(error);
   }

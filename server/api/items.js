@@ -59,13 +59,14 @@ router.put("/reduce", async (req, res, next) => {
 router.delete("/remove", async (req, res, next) => {
   try {
     const { itemId, listId } = req.body;
-    const item = await ItemUserList.destroy({
+    const item = await ItemUserList.findAll({
       where: {
         itemId,
         listId,
       },
     });
     const itemCopy = JSON.parse(JSON.stringify(item));
+    await item.destroy();
     res.sendStatus(204).json(itemCopy);
   } catch (error) {
     console.log(error);

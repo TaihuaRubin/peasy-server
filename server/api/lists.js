@@ -73,6 +73,12 @@ router.put("/markPurchased", async (req, res, next) => {
         },
       }
     );
+    // send back the household list
+    const listItems = await ItemUserList.findAll({
+      where: { listId: req.params.listId, purchased: false },
+      include: [{ model: Item }, { model: User }],
+    });
+    res.json(listItems);
   } catch (error) {
     console.log(error);
   }

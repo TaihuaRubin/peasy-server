@@ -42,14 +42,19 @@ router.put("/reduce", async (req, res, next) => {
         userId,
       },
     });
-    if (item.quantity > 1) {
-      item.quantity = item.quantity - 1;
-      await item.save();
-      res.json(item);
+
+    if (item === null) {
+      res.send("No Item For This User");
     } else {
-      const itemCopy = JSON.parse(JSON.stringify(item));
-      await item.destroy();
-      res.json(itemCopy);
+      if (item.quantity > 1) {
+        item.quantity = item.quantity - 1;
+        await item.save();
+        res.json(item);
+      } else {
+        const itemCopy = JSON.parse(JSON.stringify(item));
+        await item.destroy();
+        res.json(itemCopy);
+      }
     }
   } catch (error) {
     console.log(error);

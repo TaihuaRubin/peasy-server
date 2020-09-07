@@ -64,15 +64,17 @@ router.put("/household/:listId/:itemId", async (req, res, next) => {
 router.put("/markPurchased", async (req, res, next) => {
   try {
     const { itemId, listId } = req.body;
-    const items = await ItemUserList.findAll({
-      where: {
-        itemId,
-        listId,
-      },
-    });
+    const items = await ItemUserList.update(
+      { purchased: true },
+      {
+        where: {
+          itemId,
+          listId,
+        },
+      }
+    );
 
-    const updated = await items.update({ purchased: true });
-    res.json(updated);
+    res.json(items);
   } catch (error) {
     console.log(error);
   }

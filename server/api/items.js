@@ -65,7 +65,8 @@ router.delete("/remove", async (req, res, next) => {
         listId,
       },
     });
-    res.json(item);
+    const itemCopy = JSON.parse(JSON.stringify(item));
+    res.sendStatus(204).json(itemCopy);
   } catch (error) {
     console.log(error);
   }

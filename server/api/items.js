@@ -48,7 +48,6 @@ router.put("/reduce", async (req, res, next) => {
       res.send("0");
     } else {
       if (item.quantity > 1) {
-        item.quantity = item.quantity - 1;
         await item.update({quantity: item.quantity-1});
         res.json(item);
       } else {

@@ -22,10 +22,21 @@ router.get("/itemUserList", async (req, res, next) => {
 
 router.post("/add", async (req, res, next) => {
   try {
-    const { itemId, listId, userId } = req.body;
-    const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
+    const { itemId, listId, userId, hi } = req.body;
+    const item = await ItemUserList.findOne({
+      where: {
+        itemId, listId, userId
+      }
+    })
 
-    item.quantity = item.quantity + 1;
+    if(hi) {
+      await item.update({quantity: item.quantity+1});
+      res.json(item);
+    } else {
+      const [item, created] = await ItemUserList.findCreateFind({ where: { itemId, listId, userId } });
+
+      item.quantity = item.quantity + 1;
+    }
     await item.save();
     res.json(item);
   } catch (error) {

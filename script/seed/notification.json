@@ -3,7 +3,8 @@
     "notificationTitle": "Welcome to Peasy!",
     "notificationBody": "Hi there! We're so excited you've joined Peasy. To get started head over to your personal list and start adding your items. Roommates already on Peasy? Don't forget to request to join their household to access a shared list.",
     "type": "welcome",
-    "userId": 1
+    "userId": 1,
+    "unread": false
   },
   {
     "notificationTitle": "New Household Request",
@@ -11,7 +12,8 @@
     "type": "memberRequest",
     "userId": 1,
     "requestUserId": 2,
-    "requestListId": 58
+    "requestListId": 58,
+    "unread": false
   },
   {
     "notificationTitle": "New Household Request",

@@ -182,5 +182,29 @@
     "password": "lNPEVksvb",
     "isAdmin": false,
     "googleId": null
+  },
+  {
+    "email": "swilks6@ifeng.com",
+    "firstName": "Saunders",
+    "lastName": "Wilks",
+    "password": "evst7Du6M",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "jrambadt7@boston.com",
+    "firstName": "Jacquenetta",
+    "lastName": "Rambadt",
+    "password": "H6mTQPw",
+    "isAdmin": false,
+    "googleId": null
+  },
+  {
+    "email": "ccollinson8@va.gov",
+    "firstName": "Chris",
+    "lastName": "Collinson",
+    "password": "OUPDMeRKW",
+    "isAdmin": false,
+    "googleId": null
   }
 ]
